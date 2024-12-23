@@ -1,5 +1,8 @@
 package com.example.data_fetcher_mobile;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -54,6 +57,7 @@ public class SendDataService extends Service implements SensorEventListener {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "Service received command");
+        startForeground(1, createNotification());
         if (intent != null) {
             String action = intent.getAction();
             if ("START_SENDING".equals(action)) {
@@ -86,10 +90,36 @@ public class SendDataService extends Service implements SensorEventListener {
             }
         }
 
-        return START_NOT_STICKY; // Service will not be restarted if it's stopped by the system
+        return START_STICKY; // Ensure the service restarts if the system kills it
+    }
+
+    private Notification createNotification() {
+        // Create a persistent notification for the foreground service
+        Notification.Builder builder = new Notification.Builder(this, "channel_id")
+                .setContentTitle("Sensor Data Collection")
+                .setContentText("Sending sensor data in progress...")
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setPriority(Notification.PRIORITY_LOW); // Adjust priority based on your needs
+
+        // Create a notification channel (required for Android O and above)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    "channel_id",
+                    "Sensor Data Service",
+                    NotificationManager.IMPORTANCE_LOW);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        return builder.build();
     }
 
     private void initializeRabbitMQ() {
+        if (connection != null && connection.isOpen()) {
+            Log.d(TAG, "RabbitMQ connection already initialized. Skipping reinitialization.");
+            // Connection is already initialized; return early
+            return;
+        }
         factory = new ConnectionFactory();
         factory.setHost(serverAddress);
         factory.setVirtualHost("/");
@@ -102,6 +132,8 @@ public class SendDataService extends Service implements SensorEventListener {
         try {
             connection = factory.newConnection();
             channel = connection.createChannel();
+//            connection = factory.newConnection();
+//            channel = connection.createChannel();
             channel.queueDeclare(RABBITMQ_QUEUE_NAME, true, false, false, null);
         } catch (IOException | TimeoutException e) {
             e.printStackTrace();
