@@ -1,4 +1,4 @@
-package com.example.data_fetcher_mobile;
+package com.example.motioniq_mobile;
 
 import android.hardware.Sensor;
 import android.os.Parcel;

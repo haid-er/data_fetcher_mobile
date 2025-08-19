@@ -1,4 +1,4 @@
-package com.example.data_fetcher_mobile.ui.theme
+package com.example.motioniq_mobile.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -34,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun data_fetcher_mobileTheme(
+fun motioniq_mobileTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "data_fetcher_mobile"
+rootProject.name = "motioniq_mobile"
 include(":app")

@@ -1,4 +1,4 @@
-package com.example.data_fetcher_mobile
+package com.example.motioniq_mobile
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

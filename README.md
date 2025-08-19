@@ -1,10 +1,10 @@
-# data_fetcher_mobile for MotionIQ
+# motioniq_mobile for MotionIQ
 
 ## Screenshots
 
 <p float="left">
-	<img src="https://github.com/haid-er/data_fetcher_mobile/imgs/im1.png" width="200"/>
-	<img src="https://github.com/haid-er/data_fetcher_mobile/imgs/im2.png" width="200"/>
+	<img src="https://github.com/haid-er/motioniq_mobile/imgs/im1.png" width="200"/>
+	<img src="https://github.com/haid-er/motioniq_mobile/imgs/im2.png" width="200"/>
 </p>
 
 #### Simple and Beautiful App for fetching and send sensor's data to server.
@@ -118,7 +118,7 @@ Open ports `15672` and `5672` in Windows Firewall.
 
 All contributions are welcome! Feel free to fork, raise issues, or submit PRs.
 
-# data_fetcher_mobile
+# motioniq_mobile
 
 ### local.properties file
 

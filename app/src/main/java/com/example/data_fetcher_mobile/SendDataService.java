@@ -1,4 +1,4 @@
-package com.example.data_fetcher_mobile;
+package com.example.motioniq_mobile;
 
 import android.app.Notification;
 import android.app.NotificationChannel;

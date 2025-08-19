@@ -1,4 +1,4 @@
-package com.example.data_fetcher_mobile.ui.theme
+package com.example.motioniq_mobile.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
